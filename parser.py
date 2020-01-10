@@ -15,7 +15,7 @@ def CurrencyConverter(amount):
 
 #Calculate Prod charges and Pre's cluster charges 
 def getCharges(cvsfile):
-      DataseerPreClusterCost = 1063.96558955343
+      DataseerPreClusterCost = 9954.53
       DataseerGpuCost = 6519.67
       DataseerClusterCost = DataseerPreClusterCost + DataseerGpuCost
       resourceGroup_values = ['worleyparsonsrnd-00','WORLEYPARSONSRND-00']
@@ -31,7 +31,6 @@ def getCharges(cvsfile):
 
       ProdCost = FilterByResourceGroup['ExtendedCost'].sum()
       TotalCost = CurrencyConverter(DataseerClusterCost+ProdCost)
-      
       return '${:,.2f}'.format(TotalCost)
 
 def main():     
