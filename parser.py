@@ -15,9 +15,9 @@ def CurrencyConverter(amount):
 
 #Calculate Prod charges and Pre's cluster charges 
 def getCharges(cvsfile):
-      DataseerPreClusterCost = 9954.53
+      DataseerPreClusterCost = 10630.59
       DataseerGpuCost = 6519.67
-      DataseerClusterCost = DataseerPreClusterCost + DataseerGpuCost
+      DataseerClusterCost = DataseerPreClusterCost
       resourceGroup_values = ['worleyparsonsrnd-00','WORLEYPARSONSRND-00']
       resourceLocation_values = ['ussouthcentral','SouthCentralUS']
       datas = pd.read_csv('./'+cvsfile, skiprows=2)
@@ -30,7 +30,7 @@ def getCharges(cvsfile):
                                           & (datas['Instance ID'].str.contains('dev') == False)]
 
       ProdCost = FilterByResourceGroup['ExtendedCost'].sum()
-      TotalCost = CurrencyConverter(DataseerClusterCost+ProdCost)
+      TotalCost = CurrencyConverter(DataseerClusterCost) + ProdCost
       return '${:,.2f}'.format(TotalCost)
 
 def main():     
